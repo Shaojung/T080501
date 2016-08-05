@@ -1,6 +1,7 @@
 package tw.com.pcschool.t080501;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -85,7 +86,9 @@ public class StudentDAOImpl implements StudentDAO
 
     @Override
     public void delStudent(Student s) {
+        Log.d("LIST", "" + mylist.size() + s.name);
         mylist.remove(s);
+        Log.d("LIST", "after: " + mylist.size());
         saveList();
     }
 

@@ -12,12 +12,13 @@ public class DetailActivity extends AppCompatActivity {
     TextView tv;
     EditText ed4, ed5;
     Student s;
+    int pos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         Intent it = getIntent();
-        int pos = it.getIntExtra("pos", 0);
+        pos = it.getIntExtra("pos", 0);
 
         tv = (TextView) findViewById(R.id.textView);
         ed4 = (EditText) findViewById(R.id.editText4);
@@ -39,6 +40,7 @@ public class DetailActivity extends AppCompatActivity {
     public void click_del(View v)
     {
         StudentDAOImpl dao = new StudentDAOImpl(DetailActivity.this);
+        s = StudentDAOImpl.mylist.get(pos);
         dao.delStudent(s);
         finish();
     }
