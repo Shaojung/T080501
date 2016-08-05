@@ -12,7 +12,9 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-
+    ArrayList<String> disp = new ArrayList<>();
+    ListView lv;
+    ArrayAdapter<String> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,24 +28,30 @@ public class MainActivity extends AppCompatActivity {
         dao.addStudent(new Student("CC", "33", "3333"));
 */
 
+        for (Student s :StudentDAOImpl.mylist)
+        {
+            disp.add(s.name);
+        }
+        adapter = new ArrayAdapter<String>(
+                MainActivity.this,
+                android.R.layout.simple_list_item_1,
+                disp
+        );
+        lv = (ListView) findViewById(R.id.listView);
+        lv.setAdapter(adapter);
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        ArrayList<String> disp = new ArrayList<>();
+
+        disp.clear();
         for (Student s :StudentDAOImpl.mylist)
         {
             disp.add(s.name);
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                MainActivity.this,
-                android.R.layout.simple_list_item_1,
-                disp
-        );
-        ListView lv = (ListView) findViewById(R.id.listView);
-        lv.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
     @Override
