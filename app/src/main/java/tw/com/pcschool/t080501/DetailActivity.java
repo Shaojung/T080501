@@ -11,6 +11,7 @@ import android.widget.TextView;
 public class DetailActivity extends AppCompatActivity {
     TextView tv;
     EditText ed4, ed5;
+    Student s;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +23,7 @@ public class DetailActivity extends AppCompatActivity {
         ed4 = (EditText) findViewById(R.id.editText4);
         ed5 = (EditText) findViewById(R.id.editText5);
 
-        Student s = StudentDAOImpl.mylist.get(pos);
+        s = StudentDAOImpl.mylist.get(pos);
         tv.setText(s.name);
         ed4.setText(s.addr);
         ed5.setText(s.tel);
@@ -34,4 +35,12 @@ public class DetailActivity extends AppCompatActivity {
         Student s = new Student(tv.getText().toString(), ed4.getText().toString(), ed5.getText().toString());
         dao.updateStudent(s);
     }
+
+    public void click_del(View v)
+    {
+        StudentDAOImpl dao = new StudentDAOImpl(DetailActivity.this);
+        dao.delStudent(s);
+        finish();
+    }
+
 }
