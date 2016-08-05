@@ -56,9 +56,8 @@ public class StudentDAOImpl implements StudentDAO
 
     }
 
-    @Override
-    public void addStudent(Student s) {
-        mylist.add(s);
+    private void saveList()
+    {
         Gson gson = new Gson();
         String json = gson.toJson(mylist,  new TypeToken<ArrayList<Student>>() {}.getType());
         String fName = "student.json";
@@ -79,13 +78,28 @@ public class StudentDAOImpl implements StudentDAO
     }
 
     @Override
-    public void delStudent(Student s) {
+    public void addStudent(Student s) {
+        mylist.add(s);
+        saveList();
+    }
 
+    @Override
+    public void delStudent(Student s) {
+        mylist.remove(s);
+        saveList();
     }
 
     @Override
     public void updateStudent(Student s) {
-
+        for(Student t : mylist)
+        {
+            if (t.name.equals(s.name))
+            {
+                t.addr = s.addr;
+                t.tel = s.tel;
+            }
+        }
+        saveList();
     }
 
     @Override
