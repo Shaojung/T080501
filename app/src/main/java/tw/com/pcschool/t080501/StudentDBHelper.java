@@ -1,0 +1,29 @@
+package tw.com.pcschool.t080501;
+
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+/**
+ * Created by Student on 2016/8/8.
+ */
+public class StudentDBHelper extends SQLiteOpenHelper {
+    final static String DB_Name = "student.sqlite";
+    final static int VERSION = 1;
+    final static String CREATE_TABLE_SQL = "CREATE  TABLE \"main\".\"student\" (\"id\" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , \"name\" VARCHAR, \"addr\" VARCHAR, \"tel\" VARCHAR)";
+
+    public StudentDBHelper(Context context)
+    {
+        super(context, DB_Name, null, VERSION);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL(CREATE_TABLE_SQL);
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+    }
+}

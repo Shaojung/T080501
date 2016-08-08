@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        StudentDBHelper helper = new StudentDBHelper(MainActivity.this);
 
         StudentDAOImpl dao = new StudentDAOImpl(MainActivity.this);
         /*
