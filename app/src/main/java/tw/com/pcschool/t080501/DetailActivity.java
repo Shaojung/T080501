@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class DetailActivity extends AppCompatActivity {
     TextView tv;
     EditText ed4, ed5;
@@ -23,8 +25,9 @@ public class DetailActivity extends AppCompatActivity {
         tv = (TextView) findViewById(R.id.textView);
         ed4 = (EditText) findViewById(R.id.editText4);
         ed5 = (EditText) findViewById(R.id.editText5);
-
-        s = StudentDAOImpl.mylist.get(pos);
+        StudentDAO dao = new StudentDAODBImpl(DetailActivity.this);
+        List<Student> mylist = dao.getAllStudent();
+        s = mylist.get(pos);
         tv.setText(s.name);
         ed4.setText(s.addr);
         ed5.setText(s.tel);
@@ -32,14 +35,14 @@ public class DetailActivity extends AppCompatActivity {
 
     public void click_update(View v)
     {
-        StudentDAOImpl dao = new StudentDAOImpl(DetailActivity.this);
+        StudentDAO dao = new StudentDAODBImpl(DetailActivity.this);
         Student s = new Student(tv.getText().toString(), ed4.getText().toString(), ed5.getText().toString());
         dao.updateStudent(s);
     }
 
     public void click_del(View v)
     {
-        StudentDAOImpl dao = new StudentDAOImpl(DetailActivity.this);
+        StudentDAO dao = new StudentDAODBImpl(DetailActivity.this);
         s = StudentDAOImpl.mylist.get(pos);
         dao.delStudent(s);
         finish();

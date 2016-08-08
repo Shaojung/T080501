@@ -13,6 +13,7 @@ import android.widget.ListView;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     ArrayList<String> disp = new ArrayList<>();
@@ -23,16 +24,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        StudentDBHelper helper = new StudentDBHelper(MainActivity.this);
-        SQLiteDatabase db = helper.getWritableDatabase();
-        StudentDAOImpl dao = new StudentDAOImpl(MainActivity.this);
+
+        StudentDAO dao = new StudentDAODBImpl(MainActivity.this);
         /*
         dao.addStudent(new Student("AA", "11", "11111"));
         dao.addStudent(new Student("BB", "22", "222"));
         dao.addStudent(new Student("CC", "33", "3333"));
 */
-
-        for (Student s :StudentDAOImpl.mylist)
+        List<Student> mylist = dao.getAllStudent();
+        for (Student s : mylist)
         {
             disp.add(s.name);
         }
@@ -56,9 +56,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
+        StudentDAO dao = new StudentDAODBImpl(MainActivity.this);
+        List<Student> mylist = dao.getAllStudent();
         disp.clear();
-        for (Student s :StudentDAOImpl.mylist)
+        for (Student s :mylist)
         {
             disp.add(s.name);
         }

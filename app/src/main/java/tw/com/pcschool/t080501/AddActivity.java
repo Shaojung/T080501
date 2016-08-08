@@ -23,7 +23,7 @@ public class AddActivity extends AppCompatActivity {
         String a = ed2.getText().toString();
         String p = ed3.getText().toString();
 
-        StudentDAOImpl dao = new StudentDAOImpl(AddActivity.this);
+        StudentDAO dao = new StudentDAODBImpl(AddActivity.this);
         dao.addStudent(new Student(n, a, p));
 
     }
