@@ -33,12 +33,12 @@ public class StudentDAODBImpl implements StudentDAO {
 
     @Override
     public void delStudent(Student s) {
-
+        db.execSQL("Delete from student where name='" + s.name + "'");
     }
 
     @Override
     public void updateStudent(Student s) {
-
+        db.execSQL("Update student set addr = '" + s.addr + "' ,tel='" + s.tel + "' Where name='" + s.name + "'");
     }
 
     @Override

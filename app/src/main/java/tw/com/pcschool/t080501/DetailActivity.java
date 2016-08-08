@@ -43,7 +43,8 @@ public class DetailActivity extends AppCompatActivity {
     public void click_del(View v)
     {
         StudentDAO dao = new StudentDAODBImpl(DetailActivity.this);
-        s = StudentDAOImpl.mylist.get(pos);
+        List<Student> mylist = dao.getAllStudent();
+        s = mylist.get(pos);
         dao.delStudent(s);
         finish();
     }
