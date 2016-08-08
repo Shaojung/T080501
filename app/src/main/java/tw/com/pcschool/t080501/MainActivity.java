@@ -1,6 +1,7 @@
 package tw.com.pcschool.t080501;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         StudentDBHelper helper = new StudentDBHelper(MainActivity.this);
-
+        SQLiteDatabase db = helper.getWritableDatabase();
         StudentDAOImpl dao = new StudentDAOImpl(MainActivity.this);
         /*
         dao.addStudent(new Student("AA", "11", "11111"));

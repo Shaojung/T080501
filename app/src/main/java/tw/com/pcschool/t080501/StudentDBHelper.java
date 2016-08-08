@@ -3,6 +3,7 @@ package tw.com.pcschool.t080501;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by Student on 2016/8/8.
@@ -10,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class StudentDBHelper extends SQLiteOpenHelper {
     final static String DB_Name = "student.sqlite";
     final static int VERSION = 1;
-    final static String CREATE_TABLE_SQL = "CREATE  TABLE \"main\".\"student\" (\"id\" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , \"name\" VARCHAR, \"addr\" VARCHAR, \"tel\" VARCHAR)";
+    final static String CREATE_TABLE_SQL = "CREATE  TABLE main.student (_id INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , name VARCHAR,addr VARCHAR, tel VARCHAR)";
 
     public StudentDBHelper(Context context)
     {
@@ -19,6 +20,7 @@ public class StudentDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        Log.d("DB", "This is onCreate");
         db.execSQL(CREATE_TABLE_SQL);
     }
 
